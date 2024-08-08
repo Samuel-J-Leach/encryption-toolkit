@@ -1,0 +1,2 @@
+help - displays a list of operations
+key - creates a fernet key

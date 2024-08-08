@@ -1,16 +1,36 @@
 import sys
 from cryptography.fernet import Fernet
 
-plaintext = " ".join(sys.argv[1:])
+FORMAT = "utf-8"
 
-key = Fernet.generate_key()
+def encrypt(key, plaintext):
+    fernet = Fernet(key.encode())
+    return fernet.encrypt(plaintext.encode()).decode(FORMAT)
 
-fernet = Fernet(key)
+def decrypt(key, ciphertext):
+    fernet = Fernet(key.encode())
+    return fernet.decrypt(ciphertext.encode()).decode(FORMAT)
 
-ciphertext = fernet.encrypt(plaintext.encode()).decode("utf-8")
-print("\nciphertext:\n" + ciphertext)
-#plaintext = fernet.decrypt(ciphertext.encode()).decode("utf-8")
-#print(plaintext)
+def create_key():
+    return Fernet.generate_key().decode(FORMAT)
 
-print("\nsymmetric key:\n" + key.decode("utf-8"))
+def readHelpFile():
+    file = open("help.txt","r")
+    return file.read()
 
+def main():
+    operation = sys.argv[1]
+    if operation == "help":
+        output = readHelpFile()
+    elif operation == "encrypt":
+        output = encrypt(sys.argv[2], " ".join(sys.argv[3:]))
+    elif operation == "decrypt":
+        output = decrypt(sys.argv[2], " ".join(sys.argv[3:]))
+    elif operation == "key":
+        output = create_key()
+    else:
+        output = "ERROR: operation not recognised, enter 'python etk.py help' for a list of valid operations"
+    return output
+
+print("\n" + main())
+#" ".join(sys.argv[2:])
