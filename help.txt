@@ -1,2 +1,4 @@
 help - displays a list of operations
 key - creates a fernet key
+encrypt - uses a fernet key to encrypt plaintext
+decrypt uses a fernet key to decrypt ciphertext

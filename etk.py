@@ -29,8 +29,7 @@ def main():
     elif operation == "key":
         output = create_key()
     else:
-        output = "ERROR: operation not recognised, enter 'python etk.py help' for a list of valid operations"
+        output = "ERROR: operation '"+operation+"' not recognised, enter 'python etk.py help' for a list of valid operations"
     return output
 
 print("\n" + main())
-#" ".join(sys.argv[2:])
