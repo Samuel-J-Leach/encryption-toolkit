@@ -2,6 +2,8 @@
 
 uses the cryptography and rsa modules for python.
 
+encrypts/decrypts files and simple strings.
+
 command examples in cmd:<br>
 cmd> python etk.py help<br>
 cmd> python etk.py fernet key<br>
