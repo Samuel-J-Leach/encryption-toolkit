@@ -2,4 +2,10 @@
 
 uses the cryptography module for python.
 
-basic command in cmd> etk.py message to be encrypted
+encrypts/decrypts files and simple strings.
+
+command examples in cmd:<br>
+cmd> python etk.py help<br>
+cmd> python etk.py key<br>
+cmd> python etk.py encrypt OKTi0Q9h74NgyfzsAeXX0_9mbJL2djifY5W-LkVySRM= message to be encrypted<br>
+etc...
