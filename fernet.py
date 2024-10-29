@@ -4,11 +4,11 @@ FORMAT = "utf-8"
 
 def encrypt(key, plaintext):
     fernet = Fernet(key.encode())
-    return fernet.encrypt(plaintext.encode()).decode(FORMAT)
+    return fernet.encrypt(plaintext)
 
 def decrypt(key, ciphertext):
     fernet = Fernet(key.encode())
-    return fernet.decrypt(ciphertext.encode()).decode(FORMAT)
+    return fernet.decrypt(ciphertext)
 
 def create_key():
     return Fernet.generate_key().decode(FORMAT)
@@ -29,15 +29,15 @@ def retrieveKey(flags, args, start, end):
         key = (open(path[1:len(path)-1])).read()
     else:
         key = " ".join(args[start:end])
-        key = key[1:len(key)-1]
+        key = key[1:len(key)-1].encode()
     return key
 
 #either retrieves input data from args or from a file
 def retrieveData(flags, args, start):
     if "i" in flags:
-        data = (open(" ".join(args[start:]))).read()
+        data = (open(" ".join(args[start:]),"rb")).read()
     else:
-        data = " ".join(args[start:])
+        data = " ".join(args[start:]).encode()
     return data
 
 def run_fernet(operation, flags, args):

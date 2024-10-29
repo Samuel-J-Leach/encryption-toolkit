@@ -12,7 +12,11 @@ def saveOutput(command, flags, output):
     path = ""
     while True:
         try:
-            file = open(filename+str(i), "x")
+            file = open(filename+str(i), "xb")
+            try:
+                output = output.encode()
+            except:
+                pass
             file.write(output)
             path = str(os.path.abspath(filename+str(i)))
             file.close()
@@ -50,8 +54,14 @@ def main():
         output = run_fernet(command, flags, inputs)
     
     if "s" in flags:
-        output = output + "\n\n" + saveOutput(command, flags, output)
+        print(saveOutput(command, flags, output))
+    
+    try:
+        output = output.decode(FORMAT)
+    except:
+        pass
     return output
 
-print("\n" + main())
+print("\n")
+print(main())
 #command format: python etk.py encrypt {key} message to be encrypted
